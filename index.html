@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarkItDown MCP Server 設定教學</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/languages/powershell.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11/lib/languages/json.min.js"></script>
+  <style>
+    body { background: #f6f8fa; margin: 0; padding: 2rem 1rem; font-family: sans-serif; }
+    .markdown-body { max-width: 860px; margin: 0 auto; background: white; padding: 2.5rem 3rem; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    @media (max-width: 600px) { .markdown-body { padding: 1.5rem 1.2rem; } }
+  </style>
+</head>
+<body>
+  <article id="content" class="markdown-body"></article>
+  <script>
+    marked.setOptions({
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      breaks: true
+    });
+
+    fetch('README.md')
+      .then(r => r.text())
+      .then(md => { document.getElementById('content').innerHTML = marked.parse(md); });
+  </script>
+</body>
+</html>
