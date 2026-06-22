@@ -140,6 +140,43 @@ docker build -t markitdown-mcp:latest packages\markitdown-mcp
 
 ---
 
+## 進階：自動化 Skill（markitdown-reader）
+
+本倉庫附有 `markitdown-reader.skill`，讓 Claude **自動偵測意圖**並呼叫 markitdown 轉換，無需每次手動輸入路徑格式或轉換指令。
+
+### 功能
+
+當對話中提到支援格式的檔案（`.pdf`、`.pptx`、`.docx`、`.xlsx`、`.csv`、`.json`、`.html`、`.jpg`、`.png`、`.mp3`、`.epub`、`.zip` 等）**且有操作意圖**時，Claude 會自動：
+
+1. 呼叫 markitdown MCP 工具轉換檔案
+2. 將轉換後的 Markdown 讀入內部記憶（不顯示在聊天室）
+3. 依你的指令執行（摘要、翻譯、問答、提取資料…）
+
+### 安裝
+
+> **前提**：已完成上方 Step 1–4（MCP server 設定完成）
+
+在 Claude Desktop 的 Extensions / Skills 設定中安裝 `markitdown-reader.skill`，重啟後即可使用。
+
+### 使用範例
+
+```
+幫我摘要 /workdir/Desktop/report.pdf
+把 /workdir/Documents/slide.pptx 翻譯成英文
+/workdir/Downloads/data.xlsx 的銷售數據幫我整理成表格
+```
+
+不需要手動說「先轉成 markdown」—— Skill 會自動處理。
+
+### 注意事項
+
+- 轉換後的 Markdown 不會出現在聊天室，Claude 直接用來回答
+- 如需查看原始 Markdown 內容，說「顯示轉換後的 Markdown」即可
+- Docker Desktop 必須保持開啟（MCP server 依賴 Docker 運行）
+- 同時支援 Claude Desktop（路徑用 `/workdir/`）與 Claude Code（路徑用 Windows 本機路徑）
+
+---
+
 ## 相關連結
 
 - [markitdown GitHub](https://github.com/microsoft/markitdown)
