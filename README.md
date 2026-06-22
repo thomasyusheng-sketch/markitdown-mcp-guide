@@ -1,6 +1,7 @@
 # MarkItDown MCP Server 設定教學（Windows + Docker）
 
 > 使用 Microsoft 的 [markitdown](https://github.com/microsoft/markitdown) 搭配 Claude Desktop，將各種格式的檔案自動轉換成 Markdown。
+> MarkItDown的優點在於能夠讓 AI 大幅減少 Token 消耗並極速提升對複雜表格與文件結構的理解準確度，此 repo 為幫助使用者設置並自動使用 MarkItDown。
 
 ---
 
